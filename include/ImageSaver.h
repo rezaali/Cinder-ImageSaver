@@ -37,10 +37,10 @@ namespace img {
 typedef std::shared_ptr<class ImageSaver> ImageSaverRef;
 class ImageSaver {
   public:
-	static ImageSaverRef create( 
-		const ci::app::WindowRef &window, 
-		const std::function<void()> &drawFn, 
-		const std::function<void(glm::vec2, glm::vec2, glm::vec2, glm::vec2)> &drawBgFn = nullptr,
+	static ImageSaverRef create(
+		const ci::app::WindowRef &window,
+		const std::function<void()> &drawFn,
+		const std::function<void( glm::vec2, glm::vec2, glm::vec2, glm::vec2 )> &drawBgFn = nullptr,
 		const std::function<void( glm::vec2, glm::vec2, glm::vec2, glm::vec2 )> &drawPostFn = nullptr )
 	{
 		return ImageSaverRef( new ImageSaver( window, drawFn, drawBgFn, drawPostFn ) );
@@ -53,15 +53,13 @@ class ImageSaver {
 
 	void setSizeMultiplier( int multiplier ) { mSizeMultiplier = multiplier; }
 	int getSizeMultiplier() { return mSizeMultiplier; }
-
 	bool isRecording() { return mSaveImage; }
-
   protected:
-	ImageSaver( 
-		const ci::app::WindowRef &window, 
-		const std::function<void()> &drawFn, 
-		const std::function<void( glm::vec2, glm::vec2, glm::vec2, glm::vec2 )> &drawBgFn = nullptr, 
-		const std::function<void(glm::vec2, glm::vec2, glm::vec2, glm::vec2)> &drawPostFn = nullptr );
+	ImageSaver(
+		const ci::app::WindowRef &window,
+		const std::function<void()> &drawFn,
+		const std::function<void( glm::vec2, glm::vec2, glm::vec2, glm::vec2 )> &drawBgFn = nullptr,
+		const std::function<void( glm::vec2, glm::vec2, glm::vec2, glm::vec2 )> &drawPostFn = nullptr );
 
 	ci::CameraPersp mCam;
 	ci::app::WindowRef mWindowRef = nullptr;

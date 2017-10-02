@@ -33,7 +33,7 @@ void ImageSaver::update()
 		ivec2 windowSize = mWindowRef->getSize();
 		ivec2 outputSize = windowSize * mSizeMultiplier;
 
-		auto render = Tiler::create( outputSize, windowSize, mWindowRef, true );
+		auto render = Tiler::create( outputSize, windowSize, mWindowRef, mAlpha );
 		render->setMatrices( mCam );
 
 		if( mDrawBgFn ) {
@@ -63,13 +63,24 @@ void ImageSaver::update()
 	}
 }
 
-void ImageSaver::save( const CameraPersp &cam, const fs::path &path, const string &filename, const string &extension )
+void ImageSaver::save( const CameraPersp &cam, const fs::path &path, const string &filename, const string &extension, bool alpha )
 {
 	mSaveImage = true;
 	mCam = cam;
 	mSaveImagePath = path;
 	mSaveImageName = filename;
 	mSaveImageExtension = extension;
+    mAlpha = alpha;
+}
+
+void ImageSaver::save( const fs::path &path, const string &filename, const string &extension, bool alpha )
+{
+    mSaveImage = true;
+    mCam = CameraPersp();
+    mSaveImagePath = path;
+    mSaveImageName = filename;
+    mSaveImageExtension = extension;
+    mAlpha = alpha;
 }
 
 } // namespace img

@@ -49,7 +49,8 @@ class ImageSaver {
 
 	void update();
 
-	void save( const ci::CameraPersp &cam, const ci::fs::path &path, const std::string &filename, const std::string &extension );
+    void save( const ci::CameraPersp &cam, const ci::fs::path &path, const std::string &filename, const std::string &extension, bool alpha  = true );
+    void save( const ci::fs::path &path, const std::string &filename, const std::string &extension, bool alpha  = true );
 
 	void setSizeMultiplier( int multiplier ) { mSizeMultiplier = multiplier; }
 	int getSizeMultiplier() { return mSizeMultiplier; }
@@ -68,7 +69,7 @@ class ImageSaver {
 	std::string mSaveImageName;
 	std::string mSaveImageExtension;
 	int mSizeMultiplier = 4;
-
+    bool mAlpha = true; 
 	std::function<void()> mDrawFn;
 	std::function<void( glm::vec2, glm::vec2, glm::vec2, glm::vec2 )> mDrawBgFn;
 	std::function<void( glm::vec2, glm::vec2, glm::vec2, glm::vec2 )> mDrawPostFn;
